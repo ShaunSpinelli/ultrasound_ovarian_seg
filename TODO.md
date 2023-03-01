@@ -1,0 +1,1 @@
+- get full training run done with correct data going through model and model configured correctly
