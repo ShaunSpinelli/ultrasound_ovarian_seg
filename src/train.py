@@ -2,9 +2,14 @@
 # Created by: Shaun Spinelli 2023/03/01
 
 import logging as lg
-from tqdm import tqdm
+# from tqdm import tqdm
+# import tqdm.notebook as tq
+from tqdm.auto import tqdm
 
 import torch
+import torch.nn as nn
+
+m = nn.Sigmoid()
 
 # from . import metrics
 _logger = lg.getLogger("train")
@@ -37,8 +42,10 @@ class Training:
     def train_step(self, batch):
         data, labels = batch
         # data.cuda(), labels.cuda()
-        preds = self.model(data.cuda())
-        loss = self.loss(preds, labels.cuda())
+        # preds = self.model(data.cuda())
+        # loss = self.loss(preds, labels.cuda())
+        preds = self.model(data)
+        loss = self.loss(m(preds), labels)
         self.metrics.update(preds, labels, self.step)
         if self.metrics.writer:
             self.metrics.writer.add_scalar("loss", loss.item(), self.step)
