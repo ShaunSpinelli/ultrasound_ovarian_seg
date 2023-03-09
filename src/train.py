@@ -9,8 +9,6 @@ from tqdm.auto import tqdm
 import torch
 import torch.nn as nn
 
-m = nn.Sigmoid()
-
 # from . import metrics
 _logger = lg.getLogger("train")
 
@@ -38,17 +36,18 @@ class Training:
         self.save_dir = save_dir
 
         self.step = 0
+        self.steps_per_epoch = len(self.data)/self.epochs
 
     def train_step(self, batch):
-        data, labels = batch
-        # data.cuda(), labels.cuda()
-        # preds = self.model(data.cuda())
-        # loss = self.loss(preds, labels.cuda())
-        preds = self.model(data)
-        loss = self.loss(m(preds), labels)
+        data, labels, fnames = batch
+        preds = self.model(data.cuda())
+        loss = self.loss(preds, labels.cuda())
+
         self.metrics.update(preds, labels, self.step)
         if self.metrics.writer:
             self.metrics.writer.add_scalar("loss", loss.item(), self.step)
+            if self.step % self.steps_per_epoch == 0:
+                self.metrics.add_image_preds(data, preds, labels, fnames, self.step)
         # _logger.debug(f'Loss: {loss.item()}')
 
         self.optim.zero_grad()  # zero gradients
@@ -62,7 +61,7 @@ class Training:
     def train_loop(self):
         for i in range(self.epochs):
             # _logger.info(f'Epoch {i}/{self.epochs}')
-            print(f'Epoch {i}/{self.epochs}')
+            print(f'Epoch {i+1}/{self.epochs}')
             for batch in tqdm(self.data):
                 self.train_step(batch)
                 self.step += 1

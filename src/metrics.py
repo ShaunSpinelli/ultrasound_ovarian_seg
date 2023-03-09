@@ -4,7 +4,7 @@
 import logging as lg
 
 import numpy as np
-# from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix
 
 _logger = lg.getLogger("metrics")
 
@@ -95,3 +95,11 @@ class MetricManager:
     def reset(self):
         """Call reset method on all metrics"""
         _ = [m.reset() for m in self.metrics]
+
+    def add_image_preds(self, imgs, preds, lbls, fnames, step):
+        for i in range(len(fnames)):
+        # for im, pred, lbl, name in zip(imgs, preds, lbls, fnames):
+            self.writer.add_image(f'{fnames[i]} - image', imgs[i].cpu().numpy()*255, step)
+            self.writer.add_image( f'{fnames[i]} - label', lbls[i].cpu().numpy(), step)
+            self.writer.add_image( f'{fnames[i]} - pred', preds[i].detach().cpu().numpy(), step)
+
