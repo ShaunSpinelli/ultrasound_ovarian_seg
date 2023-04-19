@@ -59,7 +59,9 @@ Some results from baseline training on the test dataset.
 
 | Scan       | Label | Prediction |
 | ----------- | ----------- | ----------- |
-| ![class counts](assets/seg-results/1013-lbl.png)       | ![class counts](assets/seg-results/1013-lbl.png)       | ![class counts](assets/seg-results/1013-pred.png)  |
+| ![img](assets/seg-results/1013.png)       | ![lbl](assets/seg-results/1013-lbl.png)       | ![pred](assets/seg-results/1013-pred.png)  |
+| ![img](assets/seg-results/1013.png)       | ![lbl](assets/seg-results/1013-lbl.png)       | ![pred](assets/seg-results/1013-pred.png)  |
+| ![img](assets/seg-results/1013.png)       | ![lbl](assets/seg-results/1013-lbl.png)       | ![pred](assets/seg-results/1013-pred.png)  |
 
 
 ## Status
