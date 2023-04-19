@@ -46,8 +46,8 @@ class Training:
         self.metrics.update(preds, labels, self.step)
         if self.metrics.writer:
             self.metrics.writer.add_scalar("loss", loss.item(), self.step)
-            if self.step % self.steps_per_epoch == 0:
-                self.metrics.add_image_preds(data, preds, labels, fnames, self.step)
+            # if self.step % self.steps_per_epoch == 0:
+                # self.metrics.add_image_preds(data, preds, labels, fnames, self.step)
         # _logger.debug(f'Loss: {loss.item()}')
 
         self.optim.zero_grad()  # zero gradients

@@ -11,6 +11,7 @@ _logger = lg.getLogger("metrics")
 
 class Metric:
     """Base class for metrics"""
+
     def __init__(self):
         self.running_total = 0
         self.call_count = 0
@@ -20,7 +21,7 @@ class Metric:
         self.call_count += 1
         res = self.calculation(predictions, labels)
         self.running_total += res
-        return self.running_total/self.call_count
+        return self.running_total / self.call_count
 
     def calculation(self, predictions, labels):
         """Calculation implementation"""
@@ -37,9 +38,19 @@ class Accuracy(Metric):
         return "accuracy"
 
     def calculation(self, predictions, labels):
-        preds_np = np.argmax(predictions.numpy(), axis=1) # Note: not sure if this axis is right
+        preds_np = np.argmax(predictions.numpy(), axis=1)  # Note: not sure if this axis is right
         x = np.sum(preds_np == labels.numpy()) / preds_np.size
         return x
+
+
+class IOU(Metric):
+    def __str__(self):
+        return "iou"
+
+    def calculation(self, predictions, labels):
+        intersection = np.logical_and(predictions.numpy(), labels.numpy())
+        union = np.logical_or(predictions.numpy(), labels.numpy())
+        return np.sum(intersection) / np.sum(union)
 
 
 def get_cmx(predictions, labels):
@@ -49,7 +60,7 @@ def get_cmx(predictions, labels):
     return confusion_matrix(labels_np, preds_np)
 
 
-class Miou(Metric): # Note may want to ignore back ground class
+class Miou(Metric):  # Note may want to ignore back ground class
     """Calculates Mean Intersection Over Union"""
 
     def __str__(self):
@@ -72,6 +83,7 @@ class Miou(Metric): # Note may want to ignore back ground class
 
 class MetricManager:
     """Mangers all metrics during training"""
+
     def __init__(self, metrics, writer=None):
         """
 
@@ -98,8 +110,7 @@ class MetricManager:
 
     def add_image_preds(self, imgs, preds, lbls, fnames, step):
         for i in range(len(fnames)):
-        # for im, pred, lbl, name in zip(imgs, preds, lbls, fnames):
-            self.writer.add_image(f'{fnames[i]} - image', imgs[i].cpu().numpy()*255, step)
-            self.writer.add_image( f'{fnames[i]} - label', lbls[i].cpu().numpy(), step)
-            self.writer.add_image( f'{fnames[i]} - pred', preds[i].detach().cpu().numpy(), step)
-
+            # for im, pred, lbl, name in zip(imgs, preds, lbls, fnames):
+            self.writer.add_image(f'{fnames[i]} - image', imgs[i].cpu().numpy() * 255, step)
+            self.writer.add_image(f'{fnames[i]} - label', lbls[i].cpu().numpy(), step)
+            self.writer.add_image(f'{fnames[i]} - pred', preds[i].detach().cpu().numpy(), step)
