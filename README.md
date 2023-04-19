@@ -45,6 +45,9 @@ The images have been annotated with different labels such as `lines`, `hands`, `
 ## Approach
 
 Initial step will to be train a simple u-net to segment the tumors. Following that I will use the pre-trained weights form the U-nets `encoder` and add a liner classification layer to classify 8 classes. Ideally the U-Nets `encoder` will be frozen so that the same model and weights can be used for both classification and segmentation tasks.
+
+<br>
+
 ![class counts](./assets/arch.png) 
 
 
@@ -56,12 +59,12 @@ Some results from baseline training on the test dataset.
 
 | Scan       | Label | Prediction |
 | ----------- | ----------- | ----------- |
-| ![class counts](assets/seg-results/1013.JPG)       | ![class counts](assets/seg-results/1013-lbl.png)       | ![class counts](assets/seg-results/1013-pred.png)  |
-| ![class counts](assets/seg-results/1013.JPG)       | ![class counts](assets/seg-results/1013-lbl.png)       | ![class counts](assets/seg-results/1013-pred.png)  |
+| ![class counts](assets/seg-results/1013-lbl.png)       | ![class counts](assets/seg-results/1013-lbl.png)       | ![class counts](assets/seg-results/1013-pred.png)  |
 
 
 ## Status
 
 - [x] Baseline segmentation
 - [ ] Classifier
+- [ ] Experiments to improve model performance 
 
