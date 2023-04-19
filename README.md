@@ -13,7 +13,7 @@ I will just be using the `OTU_2d` which just contains the 2D ultrasound images f
 
 The dataset contains 1000 training samples and 469 test samples. Each ultrasound has a corresponding binary mask of the tumour and it's class.
 
-There eight classes:
+There are eight classes:
 
 1. choclate cyst
 2. serous cystadenoma
@@ -36,6 +36,8 @@ The ultrasounds come in a variety of sizes smallest `302x327` and the largest `1
 
 The images have been annotated with different labels such as `lines`, `hands`, `characters`, and `arrows`. If the model learns to rely on these annotations for its predictions, it may struggle to perform well on images without any annotations, leading to poor generalization.
 
+<br>
+
 | lines      | hands/characters | other |
 | ----------- | ----------- | ----------- |
 | ![class counts](./assets/lines.png)       | ![class counts](./assets/hands_letters.png)       | ![class counts](./assets/other.png)  |
@@ -48,6 +50,18 @@ Initial step will to be train a simple u-net to segment the tumors. Following th
 
 ## Results
 
+**Segmentation**
 
-## Improvements
+Some results from baseline training on the test dataset. 
+
+| Scan       | Label | Prediction |
+| ----------- | ----------- | ----------- |
+| ![class counts](assets/seg-results/1013.JPG)       | ![class counts](assets/seg-results/1013-lbl.png)       | ![class counts](assets/seg-results/1013-pred.png)  |
+| ![class counts](assets/seg-results/1013.JPG)       | ![class counts](assets/seg-results/1013-lbl.png)       | ![class counts](assets/seg-results/1013-pred.png)  |
+
+
+## Status
+
+- [x] Baseline segmentation
+- [ ] Classifier
 
