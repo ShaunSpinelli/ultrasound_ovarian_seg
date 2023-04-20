@@ -55,13 +55,13 @@ Initial step will to be train a simple u-net to segment the tumors. Following th
 
 **Segmentation**
 
-Some results from baseline training on the test dataset. 
+Some results from baseline training on the test dataset.
 
 | Scan       | Label | Prediction |
 | ----------- | ----------- | ----------- |
 | ![img](assets/seg-results/1013.png)       | ![lbl](assets/seg-results/1013-lbl.png)       | ![pred](assets/seg-results/1013-pred.png)  |
-| ![img](assets/seg-results/1013.png)       | ![lbl](assets/seg-results/1013-lbl.png)       | ![pred](assets/seg-results/1013-pred.png)  |
-| ![img](assets/seg-results/1013.png)       | ![lbl](assets/seg-results/1013-lbl.png)       | ![pred](assets/seg-results/1013-pred.png)  |
+| ![img](assets/seg-results/747.png)       | ![lbl](assets/seg-results/747-lbl.png)       | ![pred](assets/seg-results/747-pred.png)  |
+| ![img](assets/seg-results/1265.png)       | ![lbl](assets/seg-results/1265-lbl.png)       | ![pred](assets/seg-results/1265-pred.png)  |
 
 
 ## Status
