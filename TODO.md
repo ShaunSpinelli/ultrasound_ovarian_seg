@@ -6,3 +6,5 @@
 - add black padding to input images and labels
 
 - Get some proper metrics eg: MIOU
+
+https://www.kaggle.com/code/yassinealouini/all-the-segmentation-metrics
