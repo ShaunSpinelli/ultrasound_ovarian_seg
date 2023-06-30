@@ -1,4 +1,4 @@
-# Ovarian stuff
+# Ovarian Ultrasound: Segmentation and Classification of Ovarian Tumours
 
 ## Overview
 
